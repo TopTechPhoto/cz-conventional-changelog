@@ -39,7 +39,7 @@ module.exports = function (options) {
     // By default, we'll de-indent your commit
     // template and will keep empty lines.
     prompter: function(cz, commit) {
-      console.log('\nLine 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.\n');
+      console.log('\nPics.io commit convention. Message will be cropped at 100 characters.\n');
 
       // Let's ask some questions of the user
       // so that we can populate our commit
@@ -62,7 +62,7 @@ module.exports = function (options) {
           type: 'input',
           name: 'subject',
           message: 'Write a short, imperative tense description of the change:\n'
-        }, {
+         }/*, {
           type: 'input',
           name: 'body',
           message: 'Provide a longer description of the change: (press enter to skip)\n'
@@ -89,7 +89,7 @@ module.exports = function (options) {
           message: 'Add issue references (e.g. "fix #123", "re #123".):\n',
           when: function(answers) {
             return answers.isIssueAffected;
-          }
+          }*/
         }
       ]).then(function(answers) {
 
@@ -110,18 +110,19 @@ module.exports = function (options) {
         var head = (answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
 
         // Wrap these lines at 100 characters
-        var body = wrap(answers.body, wrapOptions);
+//         var body = wrap(answers.body, wrapOptions);
 
-        // Apply breaking change prefix, removing it if already present
-        var breaking = answers.breaking ? answers.breaking.trim() : '';
-        breaking = breaking ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '') : '';
-        breaking = wrap(breaking, wrapOptions);
+////         Apply breaking change prefix, removing it if already present
+//         var breaking = answers.breaking ? answers.breaking.trim() : '';
+//         breaking = breaking ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '') : '';
+//         breaking = wrap(breaking, wrapOptions);
 
-        var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
+//         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
 
-        var footer = filter([ breaking, issues ]).join('\n\n');
+//         var footer = filter([ breaking, issues ]).join('\n\n');
 
-        commit(head + '\n\n' + body + '\n\n' + footer);
+//        commit(head + '\n\n' + body + '\n\n' + footer);
+        commit(head);
       });
     }
   };
