@@ -89,8 +89,8 @@ module.exports = function (options) {
           message: 'Add issue references (e.g. "fix #123", "re #123".):\n',
           when: function(answers) {
             return answers.isIssueAffected;
-          }*/
-        }
+          }
+        }*/
       ]).then(function(answers) {
 
         var maxLineWidth = 100;
